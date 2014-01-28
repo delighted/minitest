@@ -557,6 +557,10 @@ class TestMiniTestRunner < MetaMetaMetaTestCase
     end
   end
 
+  def test_parallel_each_size
+    assert_equal 0, ParallelEach.new([]).size
+  end
+
   def test_run_parallel
     skip "I don't have ParallelEach debugged yet" if maglev?
 

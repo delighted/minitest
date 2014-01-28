@@ -48,6 +48,12 @@ class ParallelEach
     }
     threads.map(&:join)
   end
+
+  def count
+    [@queue.size - N, 0].max
+  end
+
+  alias_method :size, :count
 end
 
 class MiniTest::Unit
