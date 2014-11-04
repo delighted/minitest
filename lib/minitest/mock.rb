@@ -203,15 +203,11 @@ class Object
     metaclass.send :alias_method, new_name, name
 
     metaclass.send :define_method, name do |*args, &blk|
-      ret = if val_or_callable.respond_to? :call then
-              val_or_callable.call(*args)
-            else
-              val_or_callable
-            end
-
-      blk.call(*block_args) if blk
-
-      ret
+      if val_or_callable.respond_to? :call then
+        val_or_callable.call(*args, &blk)
+      else
+        val_or_callable
+      end
     end
 
     yield self
