@@ -176,9 +176,9 @@ class Object # :nodoc:
 
     metaclass.send :alias_method, new_name, name
 
-    metaclass.send :define_method, name do |*args|
+    metaclass.send :define_method, name do |*args, &blk|
       if val_or_callable.respond_to? :call then
-        val_or_callable.call(*args)
+        val_or_callable.call(*args, &blk)
       else
         val_or_callable
       end
